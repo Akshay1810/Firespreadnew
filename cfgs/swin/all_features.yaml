@@ -1,0 +1,29 @@
+# Model-specific parameters for Swin-Unet:
+seed_everything: 0
+optimizer:
+  class_path: torch.optim.AdamW
+  init_args:
+    lr: 1e-4
+model:
+  class_path: SwinUnetLightning
+  init_args:
+    n_channels: 40
+    flatten_temporal_dimension: false
+    pos_class_weight: 10
+    loss_function: "BCE"
+    img_size: 224
+    patch_size: 4
+    num_classes: 1
+    embed_dim: 96
+    depths: [2, 2, 2, 2]
+    num_heads: [3, 6, 12, 24]
+    window_size: 8
+    mlp_ratio: 4.0
+    dropout: 0.0
+    pretrained_path: pretrained_ckpt\swin_tiny_patch4_window7_224.pth # Provide the path if available, else leave empty.
+    # required_img_size: 224
+    # learning_rate: 1e-4
+do_train: true
+do_test: true
+do_predict: false
+# use_doy: false
